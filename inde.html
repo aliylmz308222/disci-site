@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geleceğin Diş Hekimi Elif</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #000; 
+            color: white;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* İLK BÖLÜM */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f4f7f6; 
+            overflow: hidden;
+        }
+
+        /* Resim Katmanı */
+        .arkaplan-resmi {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            z-index: 1; /* Resim altta */
+        }
+
+        /* Yazı Katmanı */
+        .hero-content {
+            position: relative;
+            z-index: 10; /* Yazı resmin üstünde */
+            text-shadow: 0px 0px 20px rgba(255,255,255,1);
+            padding: 20px;
+        }
+
+        .hero-section h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .hero-section p {
+            font-size: clamp(1rem, 4vw, 2rem);
+            color: #d63384;
+            font-weight: 600;
+        }
+
+        /* --- AŞAĞI KAYDIR BUTONU (ÖN PLANA ÇIKARILDI) --- */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px; /* Ekranın en altına yakın */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100; /* RESMİN VE HER ŞEYİN ÜSTÜNDE */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.6); /* Hafif şeffaf zemin ki her türlü görünsün */
+            padding: 10px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .scroll-indicator span {
+            color: #d63384; /* Diva pembesi yaptık ki beyaz fotoda görünsün */
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .mouse {
+            width: 22px;
+            height: 35px;
+            border: 2px solid #d63384;
+            border-radius: 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .wheel {
+            width: 4px;
+            height: 7px;
+            background: #d63384;
+            border-radius: 2px;
+            margin-top: 6px;
+            animation: scroll-anim 1.5s infinite;
+        }
+
+        @keyframes scroll-anim {
+            0% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(12px); }
+        }
+
+        /* İKİNCİ BÖLÜM: Siyah Arka Plan */
+        .message-section {
+            min-height: 100vh;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            border-top: 2px solid #333; /* Bölüm ayrımı için ince çizgi */
+        }
+
+        .message-section h2 {
+            font-size: clamp(2rem, 6vw, 3rem);
+            color: #ff91a4;
+            margin-bottom: 30px;
+        }
+
+        .message-section p {
+            max-width: 800px;
+            line-height: 1.8;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            color: #e0e0e0;
+        }
+
+        /* Müzik Butonu */
+        #play-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px; /* Mobilde daha rahat olur diye sola çektim ama istersen sağa al */
+            z-index: 1000;
+            padding: 10px 20px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(214, 51, 132, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <button id="play-btn" onclick="toggleMusic()">🎵 Şarkıyı Başlat</button>
+
+    <audio id="diva-audio" loop>
+        <source src="diva.mp4" type="audio/mp4">
+    </audio>
+
+    <section class="hero-section">
+        <img class="arkaplan-resmi" src="arkaplan1.png" alt="Dr. Elif">
+        
+        <div class="hero-content">
+            <h1>Sakin ol diva,</h1>
+            <p>Diş Doktoru olacaksın. 🦷✨</p>
+        </div>
+        
+        <div class="scroll-indicator" onclick="document.querySelector('.message-section').scrollIntoView();">
+            <span>Aşağı Kaydır</span>
+            <div class="mouse"><div class="wheel"></div></div>
+        </div>
+    </section>
+
+    <section class="message-section">
+        <h2>Sana İnanıyorum</h2>
+        <p>
+            Bu yol meşakkatli olabilir ama içindeki o <b>"diva" enerjisinin</b> üstesinden gelemeyeceği hiçbir şey yok. 
+            Pratikler, sınavlar ve tüm o yorgunluklar geçtiğinde, en iyi diş hekimi sen olacaksın. 
+            O koltuğa ve o beyaz önlüğe çok yakışacaksın. Yeteneklerine ve azmine sonuna kadar güveniyorum!
+        </p>
+    </section>
+
+    <script>
+        const audio = document.getElementById('diva-audio');
+        const btn = document.getElementById('play-btn');
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "⏸ Şarkıyı Durdur";
+            } else {
+                audio.pause();
+                btn.innerHTML = "🎵 Şarkıyı Başlat";
+            }
+        }
+    </script>
+</body>
+</html>
